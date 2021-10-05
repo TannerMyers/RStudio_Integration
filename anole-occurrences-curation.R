@@ -1,4 +1,7 @@
 
+# Code obtained and modified from https://github.com/townpeterson/vespa/tree/master/Rcode
+
+
 ###############
 
 # load packages
@@ -65,3 +68,18 @@ occ <- occ[occ$longitude != 0 & occ$latitude != 0, ]
 ## excluding duplicates
 occ <- occ[!duplicated(paste(occ$longitude, occ$latitude)), ]
 
+maps::map()
+points(occ[, 2:3], col = "red", pch = 19)
+axis(side = 2)
+axis(side =1)
+
+# excluding records outside Caribbean
+occ <- occ[occ$longitude < 0,]
+occ <- occ[occ$latitude < 30,]
+
+maps::map(xlim=c(-100,-60),ylim=c(-0,30), interior=TRUE)
+points(occ[, 2:3], col = "red", pch = 19)
+axis(side=2)
+axis(side=1)
+
+write.csv(occ, paste0(output_dir, "/A_cybotes_clean.csv"), row.names=FALSE)
