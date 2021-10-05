@@ -1,1 +1,3 @@
-# RStudio_Integration
+# README
+
+# Intro to using GitHub with RStudio 
